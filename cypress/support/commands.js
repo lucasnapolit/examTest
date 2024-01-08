@@ -24,9 +24,20 @@
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 
+
+
 require ('@cypress/xpath')
 Cypress.on('uncaught:exception', (err, runnable) => {
     // returning false here prevents Cypress from
     // failing the test
     return false
+  })
+
+  Cypress.Commands.add('login', (email, password) => { 
+
+    cy.visit("https://demo.automationtesting.in/SignIn.html")
+    cy.get('input[ng-model="Email"]').click().type(email)
+    cy.get(':nth-child(3) > .txtbox').click().type(password)
+    cy.get(':nth-child(3) > .txtbox').click()
+
   })

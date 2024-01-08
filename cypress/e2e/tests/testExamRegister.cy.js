@@ -2,7 +2,18 @@ import { ExamRegsiterPage } from "../../POM/examRegisterPage";
 const rActions = new ExamRegsiterPage()
 import examTestData from "../../fixtures/examTestdata.json"
 
+
 describe("exam Test Suite",()=>{
+
+
+    beforeEach(()=>{
+        cy.login(examTestData.mail,examTestData.password)
+
+
+
+
+    })
+
     it("User Register",()=>{
 
     rActions.visitUrl()
