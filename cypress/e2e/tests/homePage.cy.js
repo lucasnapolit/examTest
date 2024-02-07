@@ -8,7 +8,7 @@ describe("sometests",()=>{
    beforeEach(()=>{
 
     cy.visit("https://www.mediavida.com/")
-})
+     })
 
    
   

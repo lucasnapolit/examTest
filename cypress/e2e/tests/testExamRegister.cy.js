@@ -10,7 +10,7 @@ describe("exam Test Suite",()=>{
         cy.login(examTestData.mail,examTestData.password)
 
 
-
+        
 
     })
 
