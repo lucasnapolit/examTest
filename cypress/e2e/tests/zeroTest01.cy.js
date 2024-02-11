@@ -104,11 +104,37 @@ describe("Practice ELEMENTS",()=>{
       
 
     })
-  it.only("Broken Links - Images",()=>{
+  it("Broken Links - Images",()=>{
     cy.contains("Broken Links - Images").click()
    
     cy.get("div[class='col-12 mt-4 col-md-6']").find("img:eq(0)").should("have.prop","width").should("be.greaterThan",0)
     // en este caso uso 16 por que el logo de la imagen rota (no encontrada es de 16x 16) entonces si 0 me encontraria la imagen igual sin distinguir si esta rota  ono 
     cy.get("div[class='col-12 mt-4 col-md-6']").find("img:eq(1)").should("have.prop","width").should("not.be.below",16)
+    //links ** puede ser que haya un bug por q no se puede acceder directamente desde cypress a las siguientes paginas 
+    //ignorar tests
+    //cy.visit("http://demoqa.com")
+    //cy.url().should("eq","https://demoqa.com/")
+    //cy.visit("http://the-internet.herokuapp.com/status_codes/500",{failOnStatusCode:false})
+    //cy.request({method:"GET",url:"http://the-internet.herokuapp.com/status_codes/500",failOnStatusCode:false}).its("status").should("eq",500)
+  })
+  it("descargando imagenes y subiendo ",()=>{
+    cy.contains("Upload and Download").click()
+    cy.get("#downloadButton").click()
+    cy.get("#uploadFile").selectFile("C:\\Users\\Usuario\\Downloads\\sampleFile.jpeg")
+
+  })
+  it.only("dynamic properties ",()=>{
+    
+
+    cy.contains("Dynamic Properties").click()
+    cy.get("p").should("have.text","This text has random Id")
+    //vericamos que primero este en blanco la letra del boton 
+    cy.get('#colorChange').invoke("css","color").and("eq","rgb(255, 255, 255)")
+    cy.wait(5000)
+    cy.get("#enableAfter").click()
+    // despues de esperar 5 secs tiene q estar en rojo la letra del boton
+    cy.get('#colorChange').invoke("css","color").and("eq","rgb(220, 53, 69)")
+    cy.get("#visibleAfter").should("be.visible").click()
+    
   })
 })
