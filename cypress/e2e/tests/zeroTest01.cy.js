@@ -123,7 +123,7 @@ describe("Practice ELEMENTS",()=>{
     cy.get("#uploadFile").selectFile("C:\\Users\\Usuario\\Downloads\\sampleFile.jpeg")
 
   })
-  it.only("dynamic properties ",()=>{
+  it("dynamic properties ",()=>{
     
 
     cy.contains("Dynamic Properties").click()
