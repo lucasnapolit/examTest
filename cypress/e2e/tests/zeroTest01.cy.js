@@ -77,7 +77,7 @@ describe("Practice ELEMENTS",()=>{
 
     })
 
-    it.only("manejando Reponses de APIS",()=>{
+    it("manejando Reponses de APIS",()=>{
       
       cy.contains("Links").click()
       cy.get("#created").click()
@@ -104,5 +104,11 @@ describe("Practice ELEMENTS",()=>{
       
 
     })
-
+  it.only("Broken Links - Images",()=>{
+    cy.contains("Broken Links - Images").click()
+   
+    cy.get("div[class='col-12 mt-4 col-md-6']").find("img:eq(0)").should("have.prop","width").should("be.greaterThan",0)
+    // en este caso uso 16 por que el logo de la imagen rota (no encontrada es de 16x 16) entonces si 0 me encontraria la imagen igual sin distinguir si esta rota  ono 
+    cy.get("div[class='col-12 mt-4 col-md-6']").find("img:eq(1)").should("have.prop","width").should("not.be.below",16)
+  })
 })
