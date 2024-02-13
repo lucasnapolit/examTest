@@ -1,6 +1,8 @@
 
 import {TextBoxPage} from "..//..//POM/ZeroTextBoxPage"
 const rActions = new TextBoxPage()
+import { registerDemoQa } from "../../POM/demoqaRegiserPage"
+const actions = new registerDemoQa()
 import textBox from "..//..//fixtures/textBox.json"
 
 describe("Practice ELEMENTS",()=>{
@@ -137,4 +139,65 @@ describe("Practice ELEMENTS",()=>{
     cy.get("#visibleAfter").should("be.visible").click()
     
   })
+  it("registro",()=>{
+    cy.viewport("macbook-16")
+    cy.contains("Forms").click()
+    cy.contains("Practice Form").click()
+    actions.insertarNombre()
+    actions.insertarApellido()
+    actions.insertarEmail()
+    actions.selectGender()
+    actions.insertarMobile()
+    actions.seleccionarFecha()
+    actions.seleccionarMaterias() 
+    actions.seleccionarHobbies()
+    actions.subirImagen()
+    actions.insertarAdress()
+    actions.seleccionarState( )
+    actions.submit()
+    actions.closemodal()
+  })
+
+})
+describe("alerts",()=>{
+  beforeEach(()=>{
+
+    cy.visit("https://demoqa.com/alerts")
+})
+ it.only("alerta normal",()=>{
+
+  cy.contains("Alerts").click()
+  cy.get("#alertButton").click()
+  cy.on("window:alert",(contenedor)=>{
+    expect(contenedor).to.eq("You clicked a button")
+  })
+
+ })
+ it.only("alerta despues de 5 sec",()=>{
+  
+    cy.contains("Alerts").click()
+    cy.get("#timerAlertButton").click()
+    cy.wait(7000)
+    cy.on("window:alert",(contenido)=>{
+      expect(contenido).to.eq("This alert appeared after 5 seconds")
+  })
+ })
+ it.only("confirm alert",()=>{
+    cy.contains("Alerts").click()
+    cy.get("#confirmButton").click()
+    cy.on("window:confirm",(content)=>{
+      expect(content).to.eq("Do you confirm action?")
+      return false
+  })
+ })
+it.only("prompt alert",()=>{
+  cy.contains("Alerts").click()
+    cy.get("#promtButton").click()
+    cy.window().then(variable=>{
+      cy.stub(variable,"prompt").returns("hola")    }
+      )
+
+})
+
+
 })
